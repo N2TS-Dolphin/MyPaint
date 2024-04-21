@@ -1,12 +1,224 @@
-﻿<Window x:Class="MyPaint.MainWindow"
+﻿<Fluent:RibbonWindow x:Class="MyPaint.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
         xmlns:local="clr-namespace:MyPaint"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MyPaint" Height="800" Width="1300">
+
+ 
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Ribbon height will be auto-sized -->
+            <RowDefinition Height="*"/>
+            <!-- The rest of the space will be occupied by the Grid -->
+        </Grid.RowDefinitions>
+
+        <Fluent:Ribbon Grid.Row="0">
+            <!--Backstage-->
+            <Fluent:Ribbon.Menu>
+                <Fluent:ApplicationMenu Header="File">
+                    <Fluent:MenuItem Header="New" Icon="Images/new_file_icon.png" Name="newFileBtn" Click="newFileBtn_Click"
+                         RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Fluent:MenuItem Header="Open" Icon="Images/open_file_icon.png" Name="openFileBtn" Click="openFileBtn_Click"
+                         RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Fluent:MenuItem Header="Save" Icon="Images/save_file_icon.png" Name="saveFileBtn" Click="saveFileBtn_Click"
+                         RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Fluent:ApplicationMenu>
+            </Fluent:Ribbon.Menu>
+
+            <!--Tabs-->
+            <Fluent:RibbonTabItem Header="Home">
+                <!--Tools-->
+
+                <!--Clipboard-->
+                <Fluent:RibbonGroupBox Header="Clipboard">
+                    <Fluent:Button Name="pasteBtn" Header="Paste" Padding="4,4,4,0" Click="pasteBtn_Click">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="Images/paste_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+
+                    <Fluent:Button Name="copyBtn" Header="Copy" Padding="4,4,4,0" Click="copyBtn_Click">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="Images/copy_icon.png"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="Operations">
+
+                    <Fluent:Button Name="undoBtn" Header="Undo" Padding="4,4,4,0" Click="undoBtn_Click">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="Images/undo_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+
+                    <Fluent:Button Name="redoBtn" Header="Redo" Padding="4,4,4,0" Click="redoBtn_Click">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="Images/redo_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+
+                <!--Shapes-->
+                <Fluent:RibbonGroupBox Header="Shapes">
+                    <!--Add shapes' icon here-->
+                    <ListView Name="shapeIconListView" Width="200" Height="60" Margin="8,8,8,0" SelectionChanged="shapeIconListView_SelectionChanged"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Icon}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="ToolTip" Value="{Binding Name}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </Fluent:RibbonGroupBox>
+
+                <!--Styles-->
+                <Fluent:RibbonGroupBox Header="Styles">
+                    <StackPanel Orientation="Vertical" Margin="4,4,4,0" HorizontalAlignment="Center">
+                        <Image Source="Images/linethickness_icon.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="5"
+                   Width="40" Height="35" HorizontalAlignment="Center"/>
+
+                        <Fluent:ComboBox x:Name="thicknessComboBox" Height="22"  IsEditable="False" HorizontalAlignment="Center"
+                             SelectionChanged="thicknessComboBox_SelectionChanged">
+                            <ComboBoxItem IsSelected="True" Content="1 pixel"/>
+                            <ComboBoxItem Content="2 pixel"/>
+                            <ComboBoxItem Content="3 pixel"/>
+                            <ComboBoxItem Content="5 pixel"/>
+                        </Fluent:ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="4,4,4,0" HorizontalAlignment="Center">
+                        <Image Source="Images/linestyles_icon.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="5"
+                   Width="40" Height="35" HorizontalAlignment="Center"/>
+
+                        <Fluent:ComboBox x:Name="styleComboBox" Height="22" IsEditable="False" HorizontalAlignment="Center"
+                             SelectionChanged="styleComboBox_SelectionChanged">
+                            <ComboBoxItem IsSelected="True">
+                                <TextBlock Text="__________" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                <TextBlock Text="_.._.._.._.." FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ComboBoxItem>
+
+                            <ComboBoxItem>
+                                <TextBlock Text="............" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ComboBoxItem>
+
+                            <ComboBoxItem>
+                                <TextBlock Text="_ _ _ _ _ _ " FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ComboBoxItem>
+                        </Fluent:ComboBox>
+                    </StackPanel>
+                </Fluent:RibbonGroupBox>
+
+                <!--Colors-->
+                <Fluent:RibbonGroupBox Header="Colors" Width="300" >
+                    <StackPanel Orientation="Horizontal">
+
+                        <Grid  Margin="20,5,0,2" Width="200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+
+                            <Border Grid.Column="0" Grid.Row="0" BorderThickness="1" BorderBrush="Black"
+                                                Width="28" Height="28"/>
+                            <Button Name="blackColorBtn" Grid.Column="0" Grid.Row="0" Width="25" Height="25"
+                            Background="Black" Click="blackColorBtn_Click"></Button>
+
+
+                            <Border Grid.Column="1" Grid.Row="0" BorderThickness="1" BorderBrush="Black"
+                                                Width="28" Height="28"/>
+                            <Button Name="grayColorBtn" Grid.Column="1" Grid.Row="0" Width="25" Height="25"
+                            Background="Gray" Click="grayColorBtn_Click"></Button>
+
+                            <Border Grid.Column="2" Grid.Row="0" BorderThickness="1" BorderBrush="Black"
+                                            Width="28" Height="28"/>
+                            <Button Name="redColorBtn" Grid.Column="2" Grid.Row="0" Width="25" Height="25"
+                            Background="DarkRed" Click="redColorBtn_Click"></Button>
+
+                            <Border Grid.Column="3" Grid.Row="0" BorderThickness="1" BorderBrush="Black"
+                                        Width="28" Height="28"/>
+                            <Button Name="orangeColorBtn" Grid.Column="3" Grid.Row="0" Width="25" Height="25"
+                            Background="Red" Click="orangeColorBtn_Click"></Button>
+
+                            <Border Grid.Column="4" Grid.Row="0" BorderThickness="1" BorderBrush="Black"
+                                            Width="28" Height="28"/>
+                            <Button Name="yellowColorBtn" Grid.Column="4" Grid.Row="0" Width="25" Height="25"
+                                Background="Yellow" Click="yellowColorBtn_Click"></Button>
+
+
+                            <Border Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="Black"
+                                    Width="28" Height="28"/>
+                            <Button Name="greenColorBtn" Grid.Column="0" Grid.Row="1" Width="25" Height="25"
+                            Background="Green" Click="greenColorBtn_Click"></Button>
+
+                            <Border Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="Black"
+                                    Width="28" Height="28"/>
+                            <Button Name="blueColorBtn" Grid.Column="1" Grid.Row="1" Width="25" Height="25"
+                            Background="Blue" Click="blueColorBtn_Click"></Button>
+
+                            <Border Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="Black"
+                                Width="28" Height="28"/>
+                            <Button Name="purpleColorBtn" Grid.Column="2" Grid.Row="1" Width="25" Height="25"
+                                    Background="Purple" Click="purpleColorBtn_Click">
+                            </Button>
+
+                            <Border Grid.Column="3" Grid.Row="1" BorderThickness="1" BorderBrush="Black"
+                            Width="28" Height="28"/>
+                            <Button Name="brownColorBtn" Grid.Column="3" Grid.Row="1" Width="25" Height="25"
+                            Background="Brown" Click="brownColorBtn_Click"></Button>
+
+                            <Border Grid.Column="4" Grid.Row="1" BorderThickness="1" BorderBrush="Black"
+                                Width="28" Height="28"/>
+                            <Button Name="pinkColorButton" Grid.Column="4" Grid.Row="1" Width="25" Height="25"
+                                Background="Pink" Click="pinkColorButton_Click"></Button>
+                        </Grid>
+
+                        <Fluent:Button Name="editColorBtn" Header="Edit Colors" Click="editColorBtn_Click">
+                            <Fluent:Button.LargeIcon>
+                                <Image Source="Images/colorwheel_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            </Fluent:Button.LargeIcon>
+                        </Fluent:Button>
+                    </StackPanel>
+
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
+
+        <!--Drawing area-->
+        <Grid Grid.Row="1">
+            <Border Background="Transparent" IsHitTestVisible="True" MouseDown="Border_MouseDown" />
+            <Canvas Name="drawingArea" IsHitTestVisible="False" ClipToBounds="True" Background="White"/>
+        </Grid>
 
     </Grid>
-</Window>
+
+</Fluent:RibbonWindow>
