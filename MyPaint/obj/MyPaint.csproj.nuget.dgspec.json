@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dolphin\\source\\repos\\MyPaint\\MyPaint\\MyPaint.csproj": {}
+    "D:\\Desktop\\Các bài đã làm\\Năm 3\\HK2\\Lập trình window\\Đồ án\\Đồ án 2\\MyPaint\\MyPaint\\MyPaint.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dolphin\\source\\repos\\MyPaint\\MyPaint\\MyPaint.csproj": {
+    "D:\\Desktop\\Các bài đã làm\\Năm 3\\HK2\\Lập trình window\\Đồ án\\Đồ án 2\\MyPaint\\MyPaint\\MyPaint.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dolphin\\source\\repos\\MyPaint\\MyPaint\\MyPaint.csproj",
+        "projectUniqueName": "D:\\Desktop\\Các bài đã làm\\Năm 3\\HK2\\Lập trình window\\Đồ án\\Đồ án 2\\MyPaint\\MyPaint\\MyPaint.csproj",
         "projectName": "MyPaint",
-        "projectPath": "C:\\Users\\Dolphin\\source\\repos\\MyPaint\\MyPaint\\MyPaint.csproj",
-        "packagesPath": "C:\\Users\\Dolphin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dolphin\\source\\repos\\MyPaint\\MyPaint\\obj\\",
+        "projectPath": "D:\\Desktop\\Các bài đã làm\\Năm 3\\HK2\\Lập trình window\\Đồ án\\Đồ án 2\\MyPaint\\MyPaint\\MyPaint.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Desktop\\Các bài đã làm\\Năm 3\\HK2\\Lập trình window\\Đồ án\\Đồ án 2\\MyPaint\\MyPaint\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Dolphin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,16 +38,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Fluent.Ribbon": {
+              "target": "Package",
+              "version": "[10.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -63,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
