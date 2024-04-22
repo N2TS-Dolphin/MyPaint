@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Rectangle-icon.png" />
+    <None Remove="Resources\Ellipse-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Rectangle-icon.png" />
+    <Resource Include="Resources\Ellipse-icon.png" />
   </ItemGroup>
 
   <ItemGroup>

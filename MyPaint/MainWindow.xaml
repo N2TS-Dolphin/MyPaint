@@ -71,12 +71,7 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <!--<Image Source="{Binding Icon}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"></Image>-->
-                                <Button Width="70"
-                    Height="30"
-                    Content="{Binding Content}"
-                    Tag="{Binding Tag}"
-                    Click="Control_Click"/>
+                                <Image Source="{Binding Image}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
 

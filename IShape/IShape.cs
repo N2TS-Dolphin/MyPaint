@@ -1,5 +1,6 @@
 
 using System.Windows;
+using System.Windows.Media;
 
 namespace IShapes
 {
@@ -9,5 +10,6 @@ namespace IShapes
         void AddLast(Point point);
         UIElement Convert();
         string Name { get; }
+        string Image { get; }
     }
 }

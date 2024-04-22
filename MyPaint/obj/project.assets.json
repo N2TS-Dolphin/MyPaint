@@ -70,17 +70,17 @@
           }
         }
       },
-      "EllispeShape/1.0.0": {
+      "EllipseShape/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "IShape": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/EllispeShape.dll": {}
+          "bin/placeholder/EllipseShape.dll": {}
         },
         "runtime": {
-          "bin/placeholder/EllispeShape.dll": {}
+          "bin/placeholder/EllipseShape.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
@@ -218,10 +218,10 @@
         "version.txt"
       ]
     },
-    "EllispeShape/1.0.0": {
+    "EllipseShape/1.0.0": {
       "type": "project",
-      "path": "../EllispeShape/EllispeShape.csproj",
-      "msbuildProject": "../EllispeShape/EllispeShape.csproj"
+      "path": "../EllispeShape/EllipseShape.csproj",
+      "msbuildProject": "../EllispeShape/EllipseShape.csproj"
     },
     "IShape/1.0.0": {
       "type": "project",
@@ -241,7 +241,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "EllispeShape >= 1.0.0",
+      "EllipseShape >= 1.0.0",
       "Fluent.Ribbon >= 10.1.0",
       "IShape >= 1.0.0",
       "LineShape >= 1.0.0",
@@ -275,8 +275,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllispeShape.csproj": {
-              "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllispeShape.csproj"
+            "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllipseShape.csproj": {
+              "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllipseShape.csproj"
             },
             "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj": {
               "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj"

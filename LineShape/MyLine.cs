@@ -11,6 +11,7 @@ namespace LineShape
         private Point start;
         private Point end;
         public string Name => "Line";
+        public string Image => "pack://application:,,,/LineShape;component/Resources/Line-icon.png";
         public void AddFirst(Point point)
         {
             start = point;
