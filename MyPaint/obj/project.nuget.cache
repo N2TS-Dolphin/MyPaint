@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "plyBBfI63g9/O0QrRmTgj9oNFx0FgmY22edzn3/XYBHGhHGpG9xBrFHG/tZrBZGeg7nQfGOtsiX2sxAFMLPsQg==",
+  "dgSpecHash": "Dp0LjMLE/agWpVqJ3EyICZw/lZGuEhVeQbF8M6R2Vu6iJCh9Ffp+gAbkjrqwRdwE1Mk+31QMEmkHua44ldyDBA==",
   "success": true,
-  "projectFilePath": "D:\\Desktop\\Các bài đã làm\\Năm 3\\HK2\\Lập trình window\\Đồ án\\Đồ án 2\\MyPaint\\MyPaint\\MyPaint.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\MyPaint.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Admin\\.nuget\\packages\\controlzex\\6.0.0\\controlzex.6.0.0.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\fluent.ribbon\\10.1.0\\fluent.ribbon.10.1.0.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\system.text.json\\5.0.2\\system.text.json.5.0.2.nupkg.sha512"
+    "C:\\Users\\DELL\\.nuget\\packages\\controlzex\\6.0.0\\controlzex.6.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\fluent.ribbon\\10.1.0\\fluent.ribbon.10.1.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\system.text.json\\5.0.2\\system.text.json.5.0.2.nupkg.sha512"
   ],
   "logs": []
 }
