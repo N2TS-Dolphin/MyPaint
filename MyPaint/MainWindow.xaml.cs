@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Windows;
@@ -25,12 +26,11 @@ namespace MyPaint
     /// </summary>
     public partial class MainWindow : Fluent.RibbonWindow
     {
-        bool _isDrawing = false; int _shapeType = 1;
+        bool _isDrawing = false;
         Point _start; Point _end;
         List<IShape> _painters = new List<IShape>();
         IShape _painter = new MyLine();
         List<IShape> _prototype = new List<IShape>();
-        private ObservableCollection<Button> _buttonControls = new ObservableCollection<Button>();
         public MainWindow()
         {
             InitializeComponent();
@@ -54,8 +54,8 @@ namespace MyPaint
                     }
                 }
             }
-
             _painter = _prototype[0]; // Set initial selected shape
+            shapeIconListView.SelectedIndex = 0;
         }
         private void shapeIconListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -201,6 +201,25 @@ namespace MyPaint
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Debug.WriteLine("Mouse press");
+        }
+
+        float factor = 1;
+        float maxZoom = 10f; // Maximum zoom factor
+        float minZoom = 1f; // Minimum zoom factor
+        private void drawingArea_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta < 0 && factor > minZoom) // Zoom out
+            {
+                factor -= 0.1f;
+            }
+            else if (e.Delta > 0 && factor < maxZoom) // Zoom in
+            {
+                factor += 0.1f;
+            }
+            Point pt = Mouse.GetPosition(drawingArea);
+            st.CenterX = pt.X;
+            st.CenterY = pt.Y;
+            st.ScaleY = st.ScaleX = factor;
         }
     }
 }
