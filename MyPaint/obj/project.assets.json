@@ -69,6 +69,67 @@
             "related": ".xml"
           }
         }
+      },
+      "EllispeShape/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "IShape": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/EllispeShape.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EllispeShape.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "IShape/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/IShape.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/IShape.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "LineShape/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "IShape": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LineShape.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LineShape.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "RectangleShape/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "IShape": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RectangleShape.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RectangleShape.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -156,11 +217,35 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "EllispeShape/1.0.0": {
+      "type": "project",
+      "path": "../EllispeShape/EllispeShape.csproj",
+      "msbuildProject": "../EllispeShape/EllispeShape.csproj"
+    },
+    "IShape/1.0.0": {
+      "type": "project",
+      "path": "../IShape/IShape.csproj",
+      "msbuildProject": "../IShape/IShape.csproj"
+    },
+    "LineShape/1.0.0": {
+      "type": "project",
+      "path": "../LineShape/LineShape.csproj",
+      "msbuildProject": "../LineShape/LineShape.csproj"
+    },
+    "RectangleShape/1.0.0": {
+      "type": "project",
+      "path": "../RectangleShape/RectangleShape.csproj",
+      "msbuildProject": "../RectangleShape/RectangleShape.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "Fluent.Ribbon >= 10.1.0"
+      "EllispeShape >= 1.0.0",
+      "Fluent.Ribbon >= 10.1.0",
+      "IShape >= 1.0.0",
+      "LineShape >= 1.0.0",
+      "RectangleShape >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -189,7 +274,20 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllispeShape.csproj": {
+              "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllispeShape.csproj"
+            },
+            "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj": {
+              "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj"
+            },
+            "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\LineShape\\LineShape.csproj": {
+              "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\LineShape\\LineShape.csproj"
+            },
+            "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\RectangleShape\\RectangleShape.csproj": {
+              "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\RectangleShape\\RectangleShape.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

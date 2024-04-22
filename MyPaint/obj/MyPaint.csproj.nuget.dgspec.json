@@ -4,14 +4,81 @@
     "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\MyPaint.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\MyPaint.csproj": {
+    "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllispeShape.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\MyPaint.csproj",
-        "projectName": "MyPaint",
-        "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\MyPaint.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllispeShape.csproj",
+        "projectName": "EllispeShape",
+        "projectPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllispeShape.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj": {
+                "projectPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj",
+        "projectName": "IShape",
+        "projectPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,12 +111,222 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\LineShape\\LineShape.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\LineShape\\LineShape.csproj",
+        "projectName": "LineShape",
+        "projectPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\LineShape\\LineShape.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\LineShape\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj": {
+                "projectPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\MyPaint.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\MyPaint.csproj",
+        "projectName": "MyPaint",
+        "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\MyPaint.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\MyPaint\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllispeShape.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\EllispeShape\\EllispeShape.csproj"
+              },
+              "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj"
+              },
+              "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\LineShape\\LineShape.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\LineShape\\LineShape.csproj"
+              },
+              "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\RectangleShape\\RectangleShape.csproj": {
+                "projectPath": "C:\\Users\\DELL\\Source\\Repos\\N2TS-Dolphin\\MyPaint\\RectangleShape\\RectangleShape.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
           "dependencies": {
             "Fluent.Ribbon": {
               "target": "Package",
               "version": "[10.1.0, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\RectangleShape\\RectangleShape.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\RectangleShape\\RectangleShape.csproj",
+        "projectName": "RectangleShape",
+        "projectPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\RectangleShape\\RectangleShape.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\RectangleShape\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
+            "projectReferences": {
+              "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj": {
+                "projectPath": "C:\\Users\\DELL\\source\\repos\\N2TS-Dolphin\\MyPaint\\IShape\\IShape.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
           "imports": [
             "net461",
             "net462",

@@ -26,6 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EllispeShape\EllispeShape.csproj" />
+    <ProjectReference Include="..\IShape\IShape.csproj" />
+    <ProjectReference Include="..\LineShape\LineShape.csproj" />
+    <ProjectReference Include="..\RectangleShape\RectangleShape.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\colorwheel_icon.png" />
     <Resource Include="Images\copy_icon.png" />
     <Resource Include="Images\linestyles_icon.png" />
