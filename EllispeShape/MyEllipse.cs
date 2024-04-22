@@ -5,13 +5,14 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows;
 
-namespace EllispeShape
+namespace EllipseShape
 {
     public class MyEllipse : IShape
     {
         private Point start;
         private Point end;
         public string Name => "Ellipse";
+        public string Image => "pack://application:,,,/EllipseShape;component/Resources/Ellipse-icon.png";
         public void AddFirst(Point point)
         {
             start = point;

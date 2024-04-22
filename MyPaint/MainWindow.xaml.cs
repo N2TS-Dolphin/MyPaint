@@ -37,7 +37,7 @@ namespace MyPaint
         }
         private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            shapeIconListView.ItemsSource = _buttonControls;
+            shapeIconListView.ItemsSource = _prototype;
 
             string folder = AppDomain.CurrentDomain.BaseDirectory;
             var file = new DirectoryInfo(folder).GetFiles("*.dll");
@@ -55,31 +55,15 @@ namespace MyPaint
                 }
             }
 
-            foreach (var item in _prototype)
-            {
-                var control = new Button
-                {
-                    Width = 70,
-                    Height = 30,
-                    Content = item.Name,
-                    Tag = item
-                };
-                control.Click += Control_Click;
-                _buttonControls.Add(control);
-            }
-            _painter = _prototype[0];
+            _painter = _prototype[0]; // Set initial selected shape
         }
-
-        private void Control_Click(object sender, RoutedEventArgs e)
+        private void shapeIconListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var button = sender as Button;
-            if (button != null)
+            if (shapeIconListView.SelectedItem != null)
             {
-                var item = button.Tag as IShape;
-                _painter = item;
+                _painter = (IShape)shapeIconListView.SelectedItem;
             }
         }
-
         private void mouseCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             _isDrawing = true;
@@ -125,11 +109,6 @@ namespace MyPaint
         }
 
         private void redoBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void shapeIconListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

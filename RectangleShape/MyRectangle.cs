@@ -11,6 +11,7 @@ namespace RectangleShape
         private Point start;
         private Point end;
         public string Name => "Rectangle";
+        public string Image => "pack://application:,,,/RectangleShape;component/Resources/Rectangle-icon.png";
         public void AddFirst(Point point)
         {
             start = point;
