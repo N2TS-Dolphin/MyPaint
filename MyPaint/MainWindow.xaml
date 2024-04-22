@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="MyPaint" 
         Height="800" Width="1300" 
-        Loaded="RibbonWindow_Loaded">
+        Loaded="RibbonWindow_Loaded"
+        PreviewMouseWheel="drawingArea_PreviewMouseWheel">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -215,7 +216,13 @@
         <!--Drawing area-->
         <Grid Grid.Row="1">
             <Border Background="Transparent" IsHitTestVisible="True" MouseDown="Border_MouseDown" />
-            <Canvas Name="drawingArea" IsHitTestVisible="False" ClipToBounds="True" Background="White"/>
+            <ScrollViewer x:Name="ScrollViewerCanvas" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" CanContentScroll="True">
+                <Canvas Name="drawingArea" IsHitTestVisible="False" ClipToBounds="True" Background="White">
+                    <Canvas.RenderTransform>
+                        <ScaleTransform x:Name="st" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
+                    </Canvas.RenderTransform>
+                </Canvas>
+            </ScrollViewer>
             <Canvas x:Name="mouseCanvas" Background="Transparent"
                     MouseDown="mouseCanvas_MouseDown" 
                     MouseMove="mouseCanvas_MouseMove" 
