@@ -200,7 +200,35 @@ namespace MyPaint
 
         private void saveFileBtn_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new System.Windows.Forms.SaveFileDialog();
+            dialog.Filter = "PNG (*.png)|*.png";
 
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string filename = dialog.FileName;
+                SaveCanvasImage(drawingArea, filename);
+                System.Windows.MessageBox.Show("Your drawing has been saved", "Save Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void SaveCanvasImage(Canvas canvas, string filename)
+        {
+            RenderTargetBitmap renderBitmap = new RenderTargetBitmap(
+             (int)canvas.ActualWidth, (int)canvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
+            canvas.Measure(new Size((int)canvas.ActualWidth, (int)canvas.ActualHeight));
+            canvas.Arrange(new Rect(new Size((int)canvas.ActualWidth, (int)canvas.ActualHeight)));
+
+            renderBitmap.Render(canvas);
+
+
+            PngBitmapEncoder pngEncoder = new PngBitmapEncoder();
+            pngEncoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+
+            using (FileStream file = File.Create(filename))
+            {
+                pngEncoder.Save(file);
+            }
+                  
         }
 
         private void blackColorBtn_Click(object sender, RoutedEventArgs e)
