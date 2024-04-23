@@ -31,6 +31,11 @@ namespace MyPaint
         List<IShape> _painters = new List<IShape>();
         IShape _painter = new MyLine();
         List<IShape> _prototype = new List<IShape>();
+
+        private static SolidColorBrush _currentColor = new SolidColorBrush(Colors.Black);
+        private static int _currentThickness = 1;
+        private static DoubleCollection _currentDashStyle = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -77,21 +82,25 @@ namespace MyPaint
                 drawingArea.Children.Clear();
                 foreach (var item in _painters)
                 {
-                    drawingArea.Children.Add(item.Convert());
+                    drawingArea.Children.Add(item.Convert(item.Color,item.Thickness,item.DashStyle));
                 }
 
                 _end = e.GetPosition(mouseCanvas);
 
                 _painter.AddFirst(_start);
                 _painter.AddLast(_end);
-                drawingArea.Children.Add(_painter.Convert());
+                drawingArea.Children.Add(_painter.Convert(_currentColor, _currentThickness, _currentDashStyle));
             }
         }
 
         private void mouseCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             _isDrawing = false;
-            _painters.Add((IShape)_painter.Clone());
+            var temp = (IShape)_painter.Clone();
+            _painters.Add(temp);
+            temp.Color= _currentColor;
+            temp.Thickness = _currentThickness;
+            temp.DashStyle= _currentDashStyle;
         }
         private void pasteBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -120,11 +129,55 @@ namespace MyPaint
 
         private void thicknessComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            int index = thicknessComboBox.SelectedIndex;
+
+            switch (index)
+            {
+                case 0:
+                    _currentThickness = 1;
+                    break;
+                case 1:
+                    _currentThickness = 2;
+                    break;
+                case 2:
+                    _currentThickness = 3;
+                    break;
+                case 3:
+                    _currentThickness = 4;
+                    break;
+                case 4:
+                    _currentThickness = 5;
+                    break;
+                default:
+                    break;
+            }
 
         }
 
         private void styleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            int index = styleComboBox.SelectedIndex;
+
+            switch (index)
+            {
+                case 0:
+                    _currentDashStyle = null;
+                    break;
+                case 1:
+                    _currentDashStyle = new DoubleCollection() { 6, 1 };
+                    break;
+                case 2:
+                    _currentDashStyle = new DoubleCollection() { 1, 1 };
+                    break;
+                case 3:
+                    _currentDashStyle = new DoubleCollection() { 4, 1, 1, 1};
+                    break;
+               
+              
+                default:
+                    break;
+            }
 
         }
 
@@ -145,62 +198,52 @@ namespace MyPaint
 
         private void blackColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentColor = new SolidColorBrush(Colors.Black);
         }
 
         private void grayColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void darkredColorBtn_Click(object sender, RoutedEventArgs e)
-        {
-
+            _currentColor = new SolidColorBrush(Colors.Gray);
         }
 
         private void redColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentColor = new SolidColorBrush(Colors.Red);
         }
 
         private void orangeColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentColor = new SolidColorBrush(Colors.Orange);
         }
 
         private void yellowColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentColor = new SolidColorBrush(Colors.Yellow);
         }
 
         private void greenColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentColor = new SolidColorBrush(Colors.Green);
         }
 
         private void blueColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentColor = new SolidColorBrush(Colors.Blue);
         }
 
         private void purpleColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentColor = new SolidColorBrush(Colors.Purple);
         }
 
         private void brownColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            _currentColor = new SolidColorBrush(Colors.Brown);
         }
 
         private void pinkColorButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Debug.WriteLine("Mouse press");
+            _currentColor = new SolidColorBrush(Colors.Pink);
         }
 
         float factor = 1;

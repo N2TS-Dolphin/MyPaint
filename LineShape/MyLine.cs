@@ -10,6 +10,11 @@ namespace LineShape
     {
         private Point start;
         private Point end;
+
+        public SolidColorBrush Color { get; set; }
+        public int Thickness { get; set; }
+        public DoubleCollection DashStyle { get; set; }
+
         public string Name => "Line";
         public string Image => "pack://application:,,,/LineShape;component/Resources/Line-icon.png";
         public void AddFirst(Point point)
@@ -24,16 +29,16 @@ namespace LineShape
         {
             return MemberwiseClone();
         }
-        public UIElement Convert()
-        {
+        public UIElement Convert(SolidColorBrush color, int thickness, DoubleCollection dashStyle) {
             return new System.Windows.Shapes.Line
             {
                 X1 = start.X,
                 Y1 = start.Y,
                 X2 = end.X,
                 Y2 = end.Y,
-                StrokeThickness = 1,
-                Stroke = new SolidColorBrush(Colors.Red),
+                StrokeThickness = thickness,
+                Stroke = color,
+                StrokeDashArray= dashStyle
             };
         }
     }

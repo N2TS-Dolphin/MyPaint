@@ -8,8 +8,13 @@ namespace IShapes
     {
         void AddFirst(Point point);
         void AddLast(Point point);
-        UIElement Convert();
+        UIElement Convert(SolidColorBrush color, int thickness, DoubleCollection dashStyle);
         string Name { get; }
         string Image { get; }
+
+        SolidColorBrush Color { get; set; }
+        int Thickness { get; set; }
+        DoubleCollection DashStyle { get; set; }
+
     }
 }
