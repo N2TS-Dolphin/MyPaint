@@ -205,7 +205,7 @@
                                 Background="Pink" Click="pinkColorButton_Click"></Button>
                         </Grid>
 
-                        <Fluent:Button Name="editColorBtn" Header="Edit Colors" Click="editColorBtn_Click">
+                        <Fluent:Button Name="editColorBtn" Header="Edit colors" Click="editColorBtn_Click">
                             <Fluent:Button.LargeIcon>
                                 <Image Source="Images/colorwheel_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                             </Fluent:Button.LargeIcon>
