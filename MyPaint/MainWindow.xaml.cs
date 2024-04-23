@@ -190,36 +190,52 @@ namespace MyPaint
 
         private void newFileBtn_Click(object sender, RoutedEventArgs e)
         {
+            clearMyCanvas();
+        }
 
+        private void clearMyCanvas()
+        {
+            _painters.Clear();
+            drawingArea.Children.Clear();
+            drawingArea.Background = Brushes.Transparent;
         }
 
         private void openFileBtn_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "PNG (*.png)|*.png";
 
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string path = dialog.FileName;
+
+                BitmapImage bitmapImage = new BitmapImage(new Uri(path, UriKind.Absolute));
+
+                //Make image into Background
+                drawingArea.Background = new ImageBrush(bitmapImage);
+            }
         }
-
+   
         private void saveFileBtn_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new System.Windows.Forms.SaveFileDialog();
+            var dialog = new SaveFileDialog();
             dialog.Filter = "PNG (*.png)|*.png";
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string filename = dialog.FileName;
                 SaveCanvasImage(drawingArea, filename);
-                System.Windows.MessageBox.Show("Your drawing has been saved", "Save Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Windows.MessageBox.Show("Your canvas has been saved", "Save Successful", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void SaveCanvasImage(Canvas canvas, string filename)
         {
-            RenderTargetBitmap renderBitmap = new RenderTargetBitmap(
-             (int)canvas.ActualWidth, (int)canvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
+            RenderTargetBitmap renderBitmap = new RenderTargetBitmap((int)canvas.ActualWidth, (int)canvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
             canvas.Measure(new Size((int)canvas.ActualWidth, (int)canvas.ActualHeight));
             canvas.Arrange(new Rect(new Size((int)canvas.ActualWidth, (int)canvas.ActualHeight)));
 
             renderBitmap.Render(canvas);
-
 
             PngBitmapEncoder pngEncoder = new PngBitmapEncoder();
             pngEncoder.Frames.Add(BitmapFrame.Create(renderBitmap));
