@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Ribbon;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -32,9 +33,11 @@ namespace MyPaint
         IShape _painter = new MyLine();
         List<IShape> _prototype = new List<IShape>();
 
-        private static SolidColorBrush _currentColor = new SolidColorBrush(Colors.Black);
-        private static int _currentThickness = 1;
-        private static DoubleCollection _currentDashStyle = null;
+        private SolidColorBrush _currentColor = new SolidColorBrush(Colors.Black);
+        private int _currentThickness = 1;
+        private DoubleCollection _currentDashStyle = null;
+
+        ColorDialog _myColorDialog = new ColorDialog();
 
         public MainWindow()
         {
@@ -75,7 +78,7 @@ namespace MyPaint
             _start = e.GetPosition(mouseCanvas);
         }
 
-        private void mouseCanvas_MouseMove(object sender, MouseEventArgs e)
+        private void mouseCanvas_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (_isDrawing)
             {
@@ -122,9 +125,13 @@ namespace MyPaint
 
         }
 
+       
         private void editColorBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (_myColorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                _currentColor = new SolidColorBrush(Color.FromRgb(_myColorDialog.Color.R, _myColorDialog.Color.G, _myColorDialog.Color.B));
+            }
         }
 
         private void thicknessComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
