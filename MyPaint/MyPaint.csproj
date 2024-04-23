@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -23,6 +23,13 @@
 
   <ItemGroup>
     <PackageReference Include="Fluent.Ribbon" Version="10.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EllispeShape\EllipseShape.csproj" />
+    <ProjectReference Include="..\IShape\IShape.csproj" />
+    <ProjectReference Include="..\LineShape\LineShape.csproj" />
+    <ProjectReference Include="..\RectangleShape\RectangleShape.csproj" />
   </ItemGroup>
 
   <ItemGroup>
