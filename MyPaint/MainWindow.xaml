@@ -52,13 +52,13 @@
 
                 <Fluent:RibbonGroupBox Header="Operations">
 
-                    <Fluent:Button Name="undoBtn" Header="Undo" Padding="4,4,4,0" Click="undoBtn_Click">
+                    <Fluent:Button Name="undoBtn" Header="Undo" Padding="4,4,4,0" Click="undoBtn_Click" ToolTip="Ctrl+Z to Undo">
                         <Fluent:Button.LargeIcon>
                             <Image Source="Images/undo_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
 
-                    <Fluent:Button Name="redoBtn" Header="Redo" Padding="4,4,4,0" Click="redoBtn_Click">
+                    <Fluent:Button Name="redoBtn" Header="Redo" Padding="4,4,4,0" Click="redoBtn_Click" ToolTip="Ctrl+Y to Redo">
                         <Fluent:Button.LargeIcon>
                             <Image Source="Images/redo_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                         </Fluent:Button.LargeIcon>
@@ -99,11 +99,11 @@
 
                         <Fluent:ComboBox x:Name="thicknessComboBox" Height="22"  IsEditable="False" HorizontalAlignment="Center"
                              SelectionChanged="thicknessComboBox_SelectionChanged">
-                            <ComboBoxItem IsSelected="True" Content="1 pixel"/>
-                            <ComboBoxItem Content="2 pixel"/>
-                            <ComboBoxItem Content="3 pixel"/>
-                            <ComboBoxItem Content="4 pixel"/>
-                            <ComboBoxItem Content="5 pixel"/>
+                            <ComboBoxItem IsSelected="True" Content="1 px"/>
+                            <ComboBoxItem Content="2 px"/>
+                            <ComboBoxItem Content="3 px"/>
+                            <ComboBoxItem Content="4 px"/>
+                            <ComboBoxItem Content="5 px"/>
                         </Fluent:ComboBox>
                     </StackPanel>
 

@@ -38,10 +38,12 @@ namespace MyPaint
         private DoubleCollection _currentDashStyle = null;
 
         ColorDialog _myColorDialog = new ColorDialog();
+        Stack<IShape> _redoStack = new Stack<IShape>();
 
         public MainWindow()
         {
             InitializeComponent();
+            PreviewKeyDown += MainWindow_PreviewKeyDown;
         }
         private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -82,11 +84,7 @@ namespace MyPaint
         {
             if (_isDrawing)
             {
-                drawingArea.Children.Clear();
-                foreach (var item in _painters)
-                {
-                    drawingArea.Children.Add(item.Convert(item.Color,item.Thickness,item.DashStyle));
-                }
+                RedrawCanvas();
 
                 _end = e.GetPosition(mouseCanvas);
 
@@ -101,6 +99,10 @@ namespace MyPaint
             _isDrawing = false;
             var temp = (IShape)_painter.Clone();
             _painters.Add(temp);
+          
+            //clear redo stack
+            _redoStack.Clear();
+
             temp.Color= _currentColor;
             temp.Thickness = _currentThickness;
             temp.DashStyle= _currentDashStyle;
@@ -115,17 +117,71 @@ namespace MyPaint
 
         }
 
+        private void undo()
+        {
+            if (_painters.Count > 0)
+            {
+                var lastShape = _painters[_painters.Count - 1];
+                _painters.RemoveAt(_painters.Count - 1);
+
+                _redoStack.Push(lastShape);
+
+                RedrawCanvas();
+            }
+        }
+
+        private void redo()
+        {
+            if (_redoStack.Count > 0)
+            {
+                // Pop the last shape from redoStack
+                var redoShape = _redoStack.Pop();
+
+                // Add the redoShape to _painters
+                _painters.Add(redoShape);
+
+                // Redraw canvas
+                RedrawCanvas();
+            }
+        }
+
+        private void MainWindow_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                switch (e.Key)
+                {
+                    case Key.Z:
+                        undo();
+                        break;
+                    case Key.Y:
+                        redo();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         private void undoBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            undo();
         }
 
         private void redoBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            redo();
         }
 
-       
+        private void RedrawCanvas()
+        {
+            drawingArea.Children.Clear();
+            foreach (var item in _painters)
+            {
+                drawingArea.Children.Add(item.Convert(item.Color, item.Thickness, item.DashStyle));
+            }
+        }
+
         private void editColorBtn_Click(object sender, RoutedEventArgs e)
         {
             if (_myColorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -181,7 +237,6 @@ namespace MyPaint
                     _currentDashStyle = new DoubleCollection() { 4, 1, 1, 1};
                     break;
                
-              
                 default:
                     break;
             }
