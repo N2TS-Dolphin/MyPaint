@@ -48,5 +48,36 @@ namespace EllipseShape
             Canvas.SetTop(result, top);
             return result;
         }
+
+        public void ShiftPressMode()
+        {
+            double width = Math.Abs(end.X - start.X);
+            double height = Math.Abs(end.Y - start.Y);
+            double diff = Math.Min(width, height);
+
+            if (end.X > start.X && end.Y > start.Y)
+            {
+                end.X = start.X + diff;
+                end.Y = start.Y + diff;
+            }
+            else if (end.X > start.X && end.Y < start.Y)
+            {
+                end.X = start.X + diff;
+                end.Y = start.Y - diff;
+            }
+            else if (end.X < start.X && end.Y > start.Y)
+            {
+                end.X = start.X - diff;
+                end.Y = start.Y + diff;
+            }
+            else
+            {
+                end.X = start.X - diff;
+                end.Y = start.Y - diff;
+            }
+
+        }
+
+
     }
 }

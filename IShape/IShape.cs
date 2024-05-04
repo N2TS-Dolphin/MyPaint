@@ -9,6 +9,8 @@ namespace IShapes
         void AddFirst(Point point);
         void AddLast(Point point);
         UIElement Convert(SolidColorBrush color, int thickness, DoubleCollection dashStyle);
+        void ShiftPressMode();
+
         string Name { get; }
         string Image { get; }
 

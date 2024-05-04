@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MyPaint
 {
@@ -28,6 +29,7 @@ namespace MyPaint
     public partial class MainWindow : Fluent.RibbonWindow
     {
         bool _isDrawing = false;
+        bool _shiftMode = false;
         Point _start; Point _end;
         List<IShape> _painters = new List<IShape>();
         IShape _painter = new MyLine();
@@ -43,7 +45,9 @@ namespace MyPaint
         public MainWindow()
         {
             InitializeComponent();
-            PreviewKeyDown += MainWindow_PreviewKeyDown;
+            PreviewKeyDown += MainWindow_PreviewKeyDown; 
+            KeyDown += new System.Windows.Input.KeyEventHandler(OnButtonKeyDown);
+            KeyUp += new System.Windows.Input.KeyEventHandler(OnButtonKeyUp);
         }
         private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -67,6 +71,23 @@ namespace MyPaint
             _painter = _prototype[0]; // Set initial selected shape
             shapeIconListView.SelectedIndex = 0;
         }
+
+        private void OnButtonKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftShift || e.Key == Key.RightShift)
+            {
+                _shiftMode = true;
+            }
+        }
+
+        private void OnButtonKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.LeftShift || e.Key == Key.RightShift)
+            {
+                _shiftMode = false;
+            }
+        }
+
         private void shapeIconListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (shapeIconListView.SelectedItem != null)
@@ -88,8 +109,15 @@ namespace MyPaint
 
                 _end = e.GetPosition(mouseCanvas);
 
+              
+
                 _painter.AddFirst(_start);
                 _painter.AddLast(_end);
+
+                if (_shiftMode)
+                {
+                    _painter.ShiftPressMode();
+                }
                 drawingArea.Children.Add(_painter.Convert(_currentColor, _currentThickness, _currentDashStyle));
             }
         }
@@ -97,6 +125,7 @@ namespace MyPaint
         private void mouseCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             _isDrawing = false;
+
             var temp = (IShape)_painter.Clone();
             _painters.Add(temp);
           
