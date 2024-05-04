@@ -41,5 +41,19 @@ namespace LineShape
                 StrokeDashArray= dashStyle
             };
         }
+
+        public void ShiftPressMode()
+        {
+            double diff = Math.Abs(end.X - start.X) - Math.Abs(end.Y - start.Y);
+            if (diff > 0)
+            {
+                end.Y = start.Y;
+            }
+            else
+            {
+                end.X = start.X;
+            }
+        }
+
     }
 }
