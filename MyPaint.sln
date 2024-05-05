@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LineShape", "LineShape\Line
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EllipseShape", "EllispeShape\EllipseShape.csproj", "{B8B60F83-A182-4782-8BFB-5A10A01839BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pencil", "Pencil\Pencil.csproj", "{E9B22653-D2B4-47AE-8FD7-91E9AE28F894}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolPencil", "Pencil\ToolPencil.csproj", "{E9B22653-D2B4-47AE-8FD7-91E9AE28F894}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolEraser", "Eraser\ToolEraser.csproj", "{6A6F3B9D-E60E-4E27-A599-F85CC2DC2A4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{E9B22653-D2B4-47AE-8FD7-91E9AE28F894}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9B22653-D2B4-47AE-8FD7-91E9AE28F894}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9B22653-D2B4-47AE-8FD7-91E9AE28F894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A6F3B9D-E60E-4E27-A599-F85CC2DC2A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A6F3B9D-E60E-4E27-A599-F85CC2DC2A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A6F3B9D-E60E-4E27-A599-F85CC2DC2A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A6F3B9D-E60E-4E27-A599-F85CC2DC2A4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

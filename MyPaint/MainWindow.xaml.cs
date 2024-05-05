@@ -1,26 +1,16 @@
-﻿using IShapes;
+﻿using ToolEraser;
+using IShape;
 using LineShape;
-using Pencil;
-using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
+using ToolPencil;
+
 using System.IO;
-using System.Numerics;
 using System.Reflection;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Ribbon;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MyPaint
 {
@@ -32,16 +22,17 @@ namespace MyPaint
         bool _isDrawing = false;
         bool _shiftMode = false;
         Point _start; Point _end;
-        List<IShape> _painters = new List<IShape>();
-        IShape _painter = new MyLine();
-        List<IShape> _prototype = new List<IShape>();
+        List<IShapes> _painters = new List<IShapes>();
+        List<IShapes> _prototypeShape = new List<IShapes>();
+        List<IShapes> _prototypeTool = new List<IShapes>();
+        IShapes _painter = new MyLine();
 
         private SolidColorBrush _currentColor = new SolidColorBrush(Colors.Black);
         private int _currentThickness = 1;
         private DoubleCollection _currentDashStyle = null;
 
         ColorDialog _myColorDialog = new ColorDialog();
-        Stack<IShape> _redoStack = new Stack<IShape>();
+        Stack<IShapes> _redoStack = new Stack<IShapes>();
 
         public MainWindow()
         {
@@ -52,24 +43,44 @@ namespace MyPaint
         }
         private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            shapeIconListView.ItemsSource = _prototype;
-
             string folder = AppDomain.CurrentDomain.BaseDirectory;
             var file = new DirectoryInfo(folder).GetFiles("*.dll");
 
             foreach (var f in file)
             {
-                var assembly = Assembly.LoadFrom(f.FullName);
-                var types = assembly.GetTypes();
-                foreach (var t in types)
+                string fileName = Path.GetFileNameWithoutExtension(f.Name);
+
+                // Nếu tên file bắt đầu bằng "Tool", thêm vào danh sách công cụ (_prototypeTool)
+                if (fileName.StartsWith("Tool"))
                 {
-                    if ((t.IsClass) && (typeof(IShape).IsAssignableFrom(t)))
+                    var assembly = Assembly.LoadFrom(f.FullName);
+                    var types = assembly.GetTypes();
+                    foreach (var t in types)
                     {
-                        _prototype.Add((IShape)Activator.CreateInstance(t)!);
+                        if ((t.IsClass) && (typeof(IShapes).IsAssignableFrom(t)))
+                        {
+                            _prototypeTool.Add((IShapes)Activator.CreateInstance(t)!);
+                        }
+                    }
+                }
+                // Nếu tên file không bắt đầu bằng "Tool", thêm hình dạng vào danh sách _prototypeShape
+                else
+                {
+                    var assembly = Assembly.LoadFrom(f.FullName);
+                    var types = assembly.GetTypes();
+                    foreach (var t in types)
+                    {
+                        if ((t.IsClass) && (typeof(IShapes).IsAssignableFrom(t)))
+                        {
+                            _prototypeShape.Add((IShapes)Activator.CreateInstance(t)!);
+                        }
                     }
                 }
             }
-            _painter = _prototype[0]; // Set initial selected shape
+            shapeIconListView.ItemsSource = _prototypeShape;
+            toolIconListView.ItemsSource = _prototypeTool;
+
+            _painter = _prototypeShape[0]; // Set initial selected shape
             shapeIconListView.SelectedIndex = 0;
         }
 
@@ -111,11 +122,24 @@ namespace MyPaint
         {
             if (shapeIconListView.SelectedItem != null)
             {
-                _painter = (IShape)shapeIconListView.SelectedItem;
+                _painter = (IShapes)shapeIconListView.SelectedItem;
+                toolIconListView.SelectedItem = null;
+            }
+        }
 
+        private void toolIconListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (toolIconListView.SelectedItem != null)
+            {
+                _painter = (IShapes)toolIconListView.SelectedItem;
+                shapeIconListView.SelectedItem = null;
                 if (_painter is MyPencil)
                 {
                     _painter = new MyPencil();
+                }
+                else if (_painter is MyEraser)
+                {
+                    _painter = new MyEraser();
                 }
             }
         }
@@ -200,7 +224,7 @@ namespace MyPaint
         {
             _isDrawing = false;
 
-            var temp = (IShape)_painter.Clone();
+            var temp = (IShapes)_painter.Clone();
             _painters.Add(temp);
 
             //clear redo stack

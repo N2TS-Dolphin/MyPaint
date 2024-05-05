@@ -2,11 +2,11 @@
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows;
-using IShapes;
+using IShape;
 
 namespace LineShape
 {
-    public class MyLine : IShape
+    public class MyLine : IShapes
     {
         private Point start;
         private Point end;
