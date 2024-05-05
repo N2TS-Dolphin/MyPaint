@@ -65,6 +65,11 @@
                     </Fluent:Button>
                 </Fluent:RibbonGroupBox>
 
+                <!--Tools-->
+                <Fluent:RibbonGroupBox Header="Tools">
+                    <Image Source="{Binding Image}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Fluent:RibbonGroupBox>
+                
                 <!--Shapes-->
                 <Fluent:RibbonGroupBox Header="Shapes">
                     <!--Add shapes' icon here-->
