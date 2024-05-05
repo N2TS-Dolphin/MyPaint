@@ -2,11 +2,11 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows;
-using IShapes;
+using IShape;
 
 namespace RectangleShape
 {
-    public class MyRectangle : IShape
+    public class MyRectangle : IShapes
     {
         private Point start;
         private Point end;

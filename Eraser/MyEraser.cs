@@ -4,31 +4,30 @@ using System.Windows.Shapes;
 using System.Windows;
 using IShape;
 
-namespace ToolPencil
+namespace ToolEraser
 {
-    public class MyPencil : IShapes
+    public class MyEraser : IShapes
     {
         private List<Point> _points = new List<Point>();
-        private Point _lastPoint;
+        public string Name => "Eraser";
+        public string Image => "pack://application:,,,/ToolEraser;component/Resources/eraser.png";
 
         public void AddFirst(Point point)
         {
             _points.Add(point);
-            _lastPoint = point;
         }
 
         public void AddLast(Point point)
         {
             _points.Add(point);
-            _lastPoint = point;
         }
 
         public UIElement Convert(SolidColorBrush color, int thickness, DoubleCollection dashStyle)
         {
             var polyline = new Polyline
             {
-                Stroke = color,
-                StrokeThickness = thickness,
+                Stroke = Brushes.White,
+                StrokeThickness = thickness * 2,
                 StrokeDashArray = dashStyle
             };
 
@@ -39,11 +38,8 @@ namespace ToolPencil
 
         public void ShiftPressMode()
         {
-            // Not needed for pencil tool
+            // Not needed for eraser tool
         }
-
-        public string Name { get { return "Pencil"; } }
-        public string Image { get { return "pack://application:,,,/ToolPencil;component/Resources/pencil.png"; } }
 
         public SolidColorBrush Color { get; set; }
         public int Thickness { get; set; }
@@ -51,7 +47,7 @@ namespace ToolPencil
 
         public object Clone()
         {
-            return new MyPencil
+            return new MyEraser
             {
                 _points = new List<Point>(_points),
                 Color = this.Color,

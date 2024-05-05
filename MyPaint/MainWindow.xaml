@@ -67,14 +67,33 @@
 
                 <!--Tools-->
                 <Fluent:RibbonGroupBox Header="Tools">
-                    <Image Source="{Binding Image}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <ListView Name="toolIconListView" Width="150" Height="60" Margin="8, 8, 8, 0" SelectionChanged="toolIconListView_SelectionChanged"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Image}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="ToolTip" Value="{Binding Name}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
                 </Fluent:RibbonGroupBox>
-                
+
                 <!--Shapes-->
                 <Fluent:RibbonGroupBox Header="Shapes">
                     <!--Add shapes' icon here-->
                     <ListView Name="shapeIconListView" Width="200" Height="60" Margin="8,8,8,0" SelectionChanged="shapeIconListView_SelectionChanged"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding Image}" Width="25" Height="25" RenderOptions.BitmapScalingMode="HighQuality"/>

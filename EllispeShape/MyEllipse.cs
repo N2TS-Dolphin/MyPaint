@@ -1,5 +1,5 @@
 
-using IShapes;
+using IShape;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace EllipseShape
 {
-    public class MyEllipse : IShape
+    public class MyEllipse : IShapes
     {
         private Point start;
         private Point end;

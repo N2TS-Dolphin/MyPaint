@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace IShapes
+namespace IShape
 {
-    public interface IShape : ICloneable
+    public interface IShapes : ICloneable
     {
         void AddFirst(Point point);
         void AddLast(Point point);

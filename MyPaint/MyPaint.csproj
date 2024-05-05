@@ -27,9 +27,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EllispeShape\EllipseShape.csproj" />
+    <ProjectReference Include="..\Eraser\ToolEraser.csproj" />
     <ProjectReference Include="..\IShape\IShape.csproj" />
     <ProjectReference Include="..\LineShape\LineShape.csproj" />
-    <ProjectReference Include="..\Pencil\Pencil.csproj" />
+    <ProjectReference Include="..\Pencil\ToolPencil.csproj" />
     <ProjectReference Include="..\RectangleShape\RectangleShape.csproj" />
   </ItemGroup>
 
