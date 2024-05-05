@@ -11,6 +11,11 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Windows.Data;
+using System.CodeDom;
+using System.Security.AccessControl;
 
 namespace MyPaint
 {
@@ -46,7 +51,7 @@ namespace MyPaint
         }
         private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            ZoomFactor = 1;
+            ZoomFactor = 1; 
 
             string folder = AppDomain.CurrentDomain.BaseDirectory;
             var file = new DirectoryInfo(folder).GetFiles("*.dll");
@@ -87,6 +92,9 @@ namespace MyPaint
 
             _painter = _prototypeShape[0]; // Set initial selected shape
             shapeIconListView.SelectedIndex = 0;
+
+            //Update canvas scale TextBox
+            UpdateScaleTB(1);
         }
 
         private void OnButtonKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -523,11 +531,11 @@ namespace MyPaint
         {
             if (e.Delta < 0 && ZoomFactor > minFactor) // Zoom out
             {
-                ZoomFactor -= 0.5f;
+                ZoomFactor -= 0.1f;
             }
             else if (e.Delta > 0 && ZoomFactor < maxFactor) // Zoom in
             {
-                ZoomFactor += 0.5f;
+                ZoomFactor += 0.1f;
             }
             ChangeCanvasScale();
         }
@@ -542,13 +550,23 @@ namespace MyPaint
             mc.CenterX = pt.X;
             mc.CenterY = pt.Y;
             mc.ScaleY = mc.ScaleX = ZoomFactor;
+
+            UpdateScaleTB(ZoomFactor);
+        }
+
+        private void UpdateScaleTB(float zoomFactor)
+        {
+            float factor = zoomFactor;
+            int percentage = (int)(factor * 100);
+            string result = $"{percentage}%";
+            ScaleTB.Text = result;
         }
 
         private void zoomInBtn_Click(object sender, RoutedEventArgs e)
         {
             if (ZoomFactor < maxFactor) // Zoom in
             {
-                ZoomFactor += 0.5f;
+                ZoomFactor += 0.1f;
                 ChangeCanvasScale();
             }
         }
@@ -557,7 +575,7 @@ namespace MyPaint
         {
             if (ZoomFactor > minFactor) // Zoom out
             {
-                ZoomFactor -= 0.5f;
+                ZoomFactor -= 0.1f;
                 ChangeCanvasScale();
             }
         }

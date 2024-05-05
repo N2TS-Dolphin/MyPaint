@@ -8,7 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\eraser.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\IShape\IShape.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\eraser.png" />
   </ItemGroup>
 
 </Project>

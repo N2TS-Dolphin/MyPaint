@@ -35,21 +35,6 @@
             <Fluent:RibbonTabItem Header="Home">
                 <!--Tools-->
 
-                <!--Clipboard-->
-                <Fluent:RibbonGroupBox Header="Clipboard">
-                    <Fluent:Button Name="pasteBtn" Header="Paste" Padding="4,4,4,0" Click="pasteBtn_Click">
-                        <Fluent:Button.LargeIcon>
-                            <Image Source="Images/paste_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                        </Fluent:Button.LargeIcon>
-                    </Fluent:Button>
-
-                    <Fluent:Button Name="copyBtn" Header="Copy" Padding="4,4,4,0" Click="copyBtn_Click">
-                        <Fluent:Button.LargeIcon>
-                            <Image Source="Images/copy_icon.png"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                        </Fluent:Button.LargeIcon>
-                    </Fluent:Button>
-                </Fluent:RibbonGroupBox>
-
                 <Fluent:RibbonGroupBox Header="Operations">
 
                     <Fluent:Button Name="undoBtn" Header="Undo" Padding="4,4,4,0" Click="undoBtn_Click" ToolTip="Ctrl+Z to Undo">
@@ -64,17 +49,28 @@
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
 
-                    <Fluent:Button Name="zoomInBtn" Header="Zoom In" Padding="4,4,4,0" Click="zoomInBtn_Click" ToolTip="Click to zoom in">
-                        <Fluent:Button.LargeIcon>
-                            <Image Source="Images/zoom_in_icon.png" RenderOptions.BitmapScalingMode="HighQuality"/>
-                        </Fluent:Button.LargeIcon>
-                    </Fluent:Button>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0">
+                            <Fluent:Button Name="zoomInBtn" Padding="4,4,4,0" Click="zoomInBtn_Click" ToolTip="Click to zoom in">
+                                <Fluent:Button.LargeIcon>
+                                    <Image Source="Images/zoom_in_icon.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                </Fluent:Button.LargeIcon>
+                            </Fluent:Button>
 
-                    <Fluent:Button Name="zoomOutBtn" Header="Zoom Out" Padding="4,4,4,0" Click="zoomOutBtn_Click" ToolTip="Click to zoom out">
-                        <Fluent:Button.LargeIcon>
-                            <Image Source="Images/zoom_out_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                        </Fluent:Button.LargeIcon>
-                    </Fluent:Button>
+                            <Fluent:Button Name="zoomOutBtn" Padding="4,4,4,0" Click="zoomOutBtn_Click" ToolTip="Click to zoom out">
+                                <Fluent:Button.LargeIcon>
+                                    <Image Source="Images/zoom_out_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                </Fluent:Button.LargeIcon>
+                            </Fluent:Button>
+                        </StackPanel>
+
+                        <Fluent:TextBox x:Name="ScaleTB" IsReadOnly="True" TextAlignment="Center" Grid.Row="1" HorizontalAlignment="Center" Width="74" Margin="0,0,10,0"/>
+                    </Grid>
+
                 </Fluent:RibbonGroupBox>
 
                 <!--Tools-->
