@@ -63,6 +63,18 @@
                             <Image Source="Images/redo_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                         </Fluent:Button.LargeIcon>
                     </Fluent:Button>
+
+                    <Fluent:Button Name="zoomInBtn" Header="Zoom In" Padding="4,4,4,0" Click="zoomInBtn_Click" ToolTip="Click to zoom in">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="Images/zoom_in_icon.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
+
+                    <Fluent:Button Name="zoomOutBtn" Header="Zoom Out" Padding="4,4,4,0" Click="zoomOutBtn_Click" ToolTip="Click to zoom out">
+                        <Fluent:Button.LargeIcon>
+                            <Image Source="Images/zoom_out_icon.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Fluent:Button.LargeIcon>
+                    </Fluent:Button>
                 </Fluent:RibbonGroupBox>
 
                 <!--Tools-->

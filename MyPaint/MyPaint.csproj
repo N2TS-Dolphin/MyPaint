@@ -19,6 +19,12 @@
     <None Remove="Images\redo_icon.png" />
     <None Remove="Images\save_file_icon.png" />
     <None Remove="Images\undo_icon.png" />
+    <None Remove="Images\zoom_in_icon.png" />
+    <None Remove="Images\zoom_out_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\zoom_out_icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +51,7 @@
     <Resource Include="Images\redo_icon.png" />
     <Resource Include="Images\save_file_icon.png" />
     <Resource Include="Images\undo_icon.png" />
+    <Resource Include="Images\zoom_in_icon.png" />
   </ItemGroup>
 
 </Project>
