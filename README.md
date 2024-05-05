@@ -42,3 +42,5 @@ Chạy chương trình
 
 ## Link Youtube: 
 
+## Link Github: https://github.com/N2TS-Dolphin/MyPaint
+
