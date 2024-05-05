@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Data;
 using System.CodeDom;
 using System.Security.AccessControl;
+using EllipseShape;
 
 namespace MyPaint
 {
@@ -293,6 +294,7 @@ namespace MyPaint
         private void clearMyCanvas()
         {
             _painters.Clear();
+            _painter = _prototypeShape[0];
             drawingArea.Children.Clear();
             drawingArea.Background = Brushes.Transparent;
         }
