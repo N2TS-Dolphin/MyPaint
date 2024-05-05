@@ -12,6 +12,7 @@
 	3. Người dùng có thể xem bản xem trước của đối tượng muốn vẽ.  
 	4. Người dùng có thể hoàn tất việc xem trước bản vẽ và thay đổi của họ sẽ trở thành vĩnh viễn đối với các đối tượng đã vẽ trước đó.  
 	6. Lưu và tải tất cả các đối tượng được vẽ dưới dạng hình ảnh ở định dạng bmp/png/jpg (rasterization). Chỉ cần một định dạng là được. Không cần lưu ở cả ba định dạng.  
+   
   +Các chức năng gợi ý nâng cao:  
 	1. Cho phép người dùng thay đổi màu sắc, độ rộng của bút, kiểu nét (dấu gạch, chấm, gạch ngang chấm chấm..._)  
 	2. Zooming  
@@ -19,6 +20,7 @@
 	4. Pencil  
 	5. Eraser  
 	6. Vẽ hình đặc biệt khi nhấn Shift  
+   
 -Các chức năng chưa làm được:  
 	5. Danh sách các đối tượng đã vẽ có thể được lưu và tải lại để tiếp tục sau. Bạn phải lưu ở định dạng nhị phân do chính bạn xác định  
   
