@@ -29,6 +29,7 @@
     <ProjectReference Include="..\EllispeShape\EllipseShape.csproj" />
     <ProjectReference Include="..\IShape\IShape.csproj" />
     <ProjectReference Include="..\LineShape\LineShape.csproj" />
+    <ProjectReference Include="..\Pencil\Pencil.csproj" />
     <ProjectReference Include="..\RectangleShape\RectangleShape.csproj" />
   </ItemGroup>
 

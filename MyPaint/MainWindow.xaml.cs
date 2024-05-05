@@ -1,5 +1,6 @@
 ﻿using IShapes;
 using LineShape;
+using Pencil;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -45,7 +46,7 @@ namespace MyPaint
         public MainWindow()
         {
             InitializeComponent();
-            PreviewKeyDown += MainWindow_PreviewKeyDown; 
+            PreviewKeyDown += MainWindow_PreviewKeyDown;
             KeyDown += new System.Windows.Input.KeyEventHandler(OnButtonKeyDown);
             KeyUp += new System.Windows.Input.KeyEventHandler(OnButtonKeyUp);
         }
@@ -111,6 +112,11 @@ namespace MyPaint
             if (shapeIconListView.SelectedItem != null)
             {
                 _painter = (IShape)shapeIconListView.SelectedItem;
+
+                if (_painter is MyPencil)
+                {
+                    _painter = new MyPencil();
+                }
             }
         }
 
@@ -171,20 +177,16 @@ namespace MyPaint
         {
             _isDrawing = true;
             _start = e.GetPosition(mouseCanvas);
+            _painter.AddFirst(_start);
         }
 
         private void mouseCanvas_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (_isDrawing)
             {
+                Point point = e.GetPosition(mouseCanvas);
+                _painter.AddLast(point);
                 RedrawCanvas();
-
-                _end = e.GetPosition(mouseCanvas);
-
-              
-
-                _painter.AddFirst(_start);
-                _painter.AddLast(_end);
 
                 if (_shiftMode)
                 {
@@ -200,13 +202,17 @@ namespace MyPaint
 
             var temp = (IShape)_painter.Clone();
             _painters.Add(temp);
-          
+
             //clear redo stack
             _redoStack.Clear();
 
-            temp.Color= _currentColor;
+            temp.Color = _currentColor;
             temp.Thickness = _currentThickness;
-            temp.DashStyle= _currentDashStyle;
+            temp.DashStyle = _currentDashStyle;
+
+            // Clear the list of points in the _painter object
+            if (_painter is MyPencil)
+                _painter = new MyPencil();
         }
 
         // Xử lý chức năng
