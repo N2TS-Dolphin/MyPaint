@@ -11,6 +11,11 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Windows.Data;
+using System.CodeDom;
+using System.Security.AccessControl;
 
 namespace MyPaint
 {
@@ -34,6 +39,9 @@ namespace MyPaint
         ColorDialog _myColorDialog = new ColorDialog();
         Stack<IShapes> _redoStack = new Stack<IShapes>();
 
+        public float ZoomFactor { get; set; } //Zoom scaling factor
+        private float maxFactor = 10f; // Maximum zoom factor
+        private float minFactor = 1f; // Minimum zoom factor
         public MainWindow()
         {
             InitializeComponent();
@@ -43,6 +51,8 @@ namespace MyPaint
         }
         private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            ZoomFactor = 1; 
+
             string folder = AppDomain.CurrentDomain.BaseDirectory;
             var file = new DirectoryInfo(folder).GetFiles("*.dll");
 
@@ -82,6 +92,9 @@ namespace MyPaint
 
             _painter = _prototypeShape[0]; // Set initial selected shape
             shapeIconListView.SelectedIndex = 0;
+
+            //Update canvas scale TextBox
+            UpdateScaleTB(1);
         }
 
         private void OnButtonKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -507,29 +520,64 @@ namespace MyPaint
             _currentColor = new SolidColorBrush(Colors.Pink);
         }
 
-        float factor = 1;
-        float maxZoom = 10f; // Maximum zoom factor
-        float minZoom = 1f; // Minimum zoom factor
+        
 
         /// <summary>
-        /// Vùng vẽ
+        /// Zoom Vùng vẽ
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void drawingArea_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (e.Delta < 0 && factor > minZoom) // Zoom out
+            if (e.Delta < 0 && ZoomFactor > minFactor) // Zoom out
             {
-                factor -= 0.1f;
+                ZoomFactor -= 0.1f;
             }
-            else if (e.Delta > 0 && factor < maxZoom) // Zoom in
+            else if (e.Delta > 0 && ZoomFactor < maxFactor) // Zoom in
             {
-                factor += 0.1f;
+                ZoomFactor += 0.1f;
             }
+            ChangeCanvasScale();
+        }
+
+        private void ChangeCanvasScale()
+        {
             Point pt = Mouse.GetPosition(drawingArea);
-            st.CenterX = pt.X;
-            st.CenterY = pt.Y;
-            st.ScaleY = st.ScaleX = factor;
+            da.CenterX = pt.X;
+            da.CenterY = pt.Y;
+            da.ScaleY = da.ScaleX = ZoomFactor;
+
+            mc.CenterX = pt.X;
+            mc.CenterY = pt.Y;
+            mc.ScaleY = mc.ScaleX = ZoomFactor;
+
+            UpdateScaleTB(ZoomFactor);
+        }
+
+        private void UpdateScaleTB(float zoomFactor)
+        {
+            float factor = zoomFactor;
+            int percentage = (int)(factor * 100);
+            string result = $"{percentage}%";
+            ScaleTB.Text = result;
+        }
+
+        private void zoomInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (ZoomFactor < maxFactor) // Zoom in
+            {
+                ZoomFactor += 0.1f;
+                ChangeCanvasScale();
+            }
+        }
+
+        private void zoomOutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (ZoomFactor > minFactor) // Zoom out
+            {
+                ZoomFactor -= 0.1f;
+                ChangeCanvasScale();
+            }
         }
     }
 }
