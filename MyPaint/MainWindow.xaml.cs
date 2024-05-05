@@ -507,15 +507,18 @@ namespace MyPaint
             _currentColor = new SolidColorBrush(Colors.Pink);
         }
 
+        
+
+        /// <summary>
+        /// Zoom Vùng vẽ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         float factor = 1;
         float maxZoom = 10f; // Maximum zoom factor
         float minZoom = 1f; // Minimum zoom factor
 
-        /// <summary>
-        /// Vùng vẽ
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void drawingArea_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (e.Delta < 0 && factor > minZoom) // Zoom out
@@ -527,9 +530,13 @@ namespace MyPaint
                 factor += 0.1f;
             }
             Point pt = Mouse.GetPosition(drawingArea);
-            st.CenterX = pt.X;
-            st.CenterY = pt.Y;
-            st.ScaleY = st.ScaleX = factor;
+            da.CenterX = pt.X;
+            da.CenterY = pt.Y;
+            da.ScaleY = da.ScaleX = factor;
+
+            mc.CenterX = pt.X;
+            mc.CenterY = pt.Y;
+            mc.ScaleY = mc.ScaleX = factor;
         }
     }
 }

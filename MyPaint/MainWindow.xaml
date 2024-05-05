@@ -242,20 +242,21 @@
 
         <!--Drawing area-->
         <Grid Grid.Row="1">
-
-            <ScrollViewer x:Name="ScrollViewerCanvas" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" CanContentScroll="True">
-                <Canvas Name="drawingArea" IsHitTestVisible="False" ClipToBounds="True" Background="White">
-                    <Canvas.RenderTransform>
-                        <ScaleTransform x:Name="st" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
-                    </Canvas.RenderTransform>
-                </Canvas>
+            <ScrollViewer x:Name="ScrollViewerCanvas" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+                <Grid>
+                    <Canvas Name="drawingArea" IsHitTestVisible="False" ClipToBounds="True" Background="White">
+                        <Canvas.RenderTransform>
+                            <ScaleTransform x:Name="da" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
+                        </Canvas.RenderTransform>
+                    </Canvas>
+                    <Canvas x:Name="mouseCanvas" Background="Transparent" MouseDown="mouseCanvas_MouseDown" MouseMove="mouseCanvas_MouseMove" MouseUp="mouseCanvas_MouseUp">
+                        <Canvas.RenderTransform>
+                            <ScaleTransform x:Name="mc" CenterX="0" CenterY="0" ScaleX="1" ScaleY="1"/>
+                        </Canvas.RenderTransform>
+                    </Canvas>
+                </Grid>
             </ScrollViewer>
-            <Canvas x:Name="mouseCanvas" Background="Transparent"
-                    MouseDown="mouseCanvas_MouseDown" 
-                    MouseMove="mouseCanvas_MouseMove" 
-                    MouseUp="mouseCanvas_MouseUp"/>
         </Grid>
-
     </Grid>
 
 </Fluent:RibbonWindow>
