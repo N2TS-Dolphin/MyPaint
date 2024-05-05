@@ -88,92 +88,6 @@ namespace MyPaint
             }
         }
 
-        private void shapeIconListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (shapeIconListView.SelectedItem != null)
-            {
-                _painter = (IShape)shapeIconListView.SelectedItem;
-            }
-        }
-        private void mouseCanvas_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            _isDrawing = true;
-            _start = e.GetPosition(mouseCanvas);
-        }
-
-        private void mouseCanvas_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if (_isDrawing)
-            {
-                RedrawCanvas();
-
-                _end = e.GetPosition(mouseCanvas);
-
-              
-
-                _painter.AddFirst(_start);
-                _painter.AddLast(_end);
-
-                if (_shiftMode)
-                {
-                    _painter.ShiftPressMode();
-                }
-                drawingArea.Children.Add(_painter.Convert(_currentColor, _currentThickness, _currentDashStyle));
-            }
-        }
-
-        private void mouseCanvas_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            _isDrawing = false;
-
-            var temp = (IShape)_painter.Clone();
-            _painters.Add(temp);
-          
-            //clear redo stack
-            _redoStack.Clear();
-
-            temp.Color= _currentColor;
-            temp.Thickness = _currentThickness;
-            temp.DashStyle= _currentDashStyle;
-        }
-        private void pasteBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void copyBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void undo()
-        {
-            if (_painters.Count > 0)
-            {
-                var lastShape = _painters[_painters.Count - 1];
-                _painters.RemoveAt(_painters.Count - 1);
-
-                _redoStack.Push(lastShape);
-
-                RedrawCanvas();
-            }
-        }
-
-        private void redo()
-        {
-            if (_redoStack.Count > 0)
-            {
-                // Pop the last shape from redoStack
-                var redoShape = _redoStack.Pop();
-
-                // Add the redoShape to _painters
-                _painters.Add(redoShape);
-
-                // Redraw canvas
-                RedrawCanvas();
-            }
-        }
-
         private void MainWindow_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (Keyboard.Modifiers == ModifierKeys.Control)
@@ -192,30 +106,11 @@ namespace MyPaint
             }
         }
 
-        private void undoBtn_Click(object sender, RoutedEventArgs e)
+        private void shapeIconListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            undo();
-        }
-
-        private void redoBtn_Click(object sender, RoutedEventArgs e)
-        {
-            redo();
-        }
-
-        private void RedrawCanvas()
-        {
-            drawingArea.Children.Clear();
-            foreach (var item in _painters)
+            if (shapeIconListView.SelectedItem != null)
             {
-                drawingArea.Children.Add(item.Convert(item.Color, item.Thickness, item.DashStyle));
-            }
-        }
-
-        private void editColorBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (_myColorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                _currentColor = new SolidColorBrush(Color.FromRgb(_myColorDialog.Color.R, _myColorDialog.Color.G, _myColorDialog.Color.B));
+                _painter = (IShape)shapeIconListView.SelectedItem;
             }
         }
 
@@ -263,18 +158,93 @@ namespace MyPaint
                     _currentDashStyle = new DoubleCollection() { 1, 1 };
                     break;
                 case 3:
-                    _currentDashStyle = new DoubleCollection() { 4, 1, 1, 1};
+                    _currentDashStyle = new DoubleCollection() { 4, 1, 1, 1 };
                     break;
-               
+
                 default:
                     break;
             }
 
         }
 
-        private void newFileBtn_Click(object sender, RoutedEventArgs e)
+        private void mouseCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            clearMyCanvas();
+            _isDrawing = true;
+            _start = e.GetPosition(mouseCanvas);
+        }
+
+        private void mouseCanvas_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (_isDrawing)
+            {
+                RedrawCanvas();
+
+                _end = e.GetPosition(mouseCanvas);
+
+              
+
+                _painter.AddFirst(_start);
+                _painter.AddLast(_end);
+
+                if (_shiftMode)
+                {
+                    _painter.ShiftPressMode();
+                }
+                drawingArea.Children.Add(_painter.Convert(_currentColor, _currentThickness, _currentDashStyle));
+            }
+        }
+
+        private void mouseCanvas_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            _isDrawing = false;
+
+            var temp = (IShape)_painter.Clone();
+            _painters.Add(temp);
+          
+            //clear redo stack
+            _redoStack.Clear();
+
+            temp.Color= _currentColor;
+            temp.Thickness = _currentThickness;
+            temp.DashStyle= _currentDashStyle;
+        }
+
+        // Xử lý chức năng
+        private void undo()
+        {
+            if (_painters.Count > 0)
+            {
+                var lastShape = _painters[_painters.Count - 1];
+                _painters.RemoveAt(_painters.Count - 1);
+
+                _redoStack.Push(lastShape);
+
+                RedrawCanvas();
+            }
+        }
+
+        private void redo()
+        {
+            if (_redoStack.Count > 0)
+            {
+                // Pop the last shape from redoStack
+                var redoShape = _redoStack.Pop();
+
+                // Add the redoShape to _painters
+                _painters.Add(redoShape);
+
+                // Redraw canvas
+                RedrawCanvas();
+            }
+        }
+
+        private void RedrawCanvas()
+        {
+            drawingArea.Children.Clear();
+            foreach (var item in _painters)
+            {
+                drawingArea.Children.Add(item.Convert(item.Color, item.Thickness, item.DashStyle));
+            }
         }
 
         private void clearMyCanvas()
@@ -282,35 +252,6 @@ namespace MyPaint
             _painters.Clear();
             drawingArea.Children.Clear();
             drawingArea.Background = Brushes.Transparent;
-        }
-
-        private void openFileBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new OpenFileDialog();
-            dialog.Filter = "PNG (*.png)|*.png";
-
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string path = dialog.FileName;
-
-                BitmapImage bitmapImage = new BitmapImage(new Uri(path, UriKind.Absolute));
-
-                //Make image into Background
-                drawingArea.Background = new ImageBrush(bitmapImage);
-            }
-        }
-   
-        private void saveFileBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new SaveFileDialog();
-            dialog.Filter = "PNG (*.png)|*.png";
-
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string filename = dialog.FileName;
-                SaveCanvasImage(drawingArea, filename);
-                System.Windows.MessageBox.Show("Your canvas has been saved", "Save Successful", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
         }
 
         private void SaveCanvasImage(Canvas canvas, string filename)
@@ -328,54 +269,209 @@ namespace MyPaint
             {
                 pngEncoder.Save(file);
             }
-                  
+
         }
 
+
+        // Xử lý các sự kiện click
+
+        /// <summary>
+        /// Xử lý thao tác paste
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pasteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Xử lý thao tác copy
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void copyBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Xử lý thao tác hoàn tác
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void undoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            undo();
+        }
+
+        /// <summary>
+        /// Xử lý thao tác lặp lại
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void redoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            redo();
+        }
+
+        /// <summary>
+        /// Xử lý thao tác sửa màu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void editColorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (_myColorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                _currentColor = new SolidColorBrush(Color.FromRgb(_myColorDialog.Color.R, _myColorDialog.Color.G, _myColorDialog.Color.B));
+            }
+        }
+
+        /// <summary>
+        /// Xử lý thao tác tạo file mới
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void newFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            clearMyCanvas();
+        }
+
+        /// <summary>
+        /// Xử lý thao tác mở file trong máy
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void openFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "PNG (*.png)|*.png";
+
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string path = dialog.FileName;
+
+                BitmapImage bitmapImage = new BitmapImage(new Uri(path, UriKind.Absolute));
+
+                //Make image into Background
+                drawingArea.Background = new ImageBrush(bitmapImage);
+            }
+        }
+
+        /// <summary>
+        /// Xử lý thao tác lưu file hiện tại
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveFileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SaveFileDialog();
+            dialog.Filter = "PNG (*.png)|*.png";
+
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string filename = dialog.FileName;
+                SaveCanvasImage(drawingArea, filename);
+                System.Windows.MessageBox.Show("Your canvas has been saved", "Save Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        /// <summary>
+        /// Xử lý chọn màu đen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void blackColorBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Black);
         }
 
+        /// <summary>
+        /// Xử lý chọn màu xám
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void grayColorBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Gray);
         }
 
+        /// <summary>
+        /// Xử lý chọn màu đỏ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void redColorBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Red);
         }
 
+        /// <summary>
+        /// Xử lý chọn màu cam
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void orangeColorBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Orange);
         }
 
+        /// <summary>
+        /// Xử lý chọn màu vàng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void yellowColorBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Yellow);
         }
 
+        /// <summary>
+        /// Xử lý chọn màu xanh lá
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void greenColorBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Green);
         }
 
+        /// <summary>
+        /// Xử lý chọn màu xanh biển
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void blueColorBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Blue);
         }
 
+        /// <summary>
+        /// Xử lý chọn màu tím
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void purpleColorBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Purple);
         }
 
+        /// <summary>
+        /// Xử lý chọn màu nâu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void brownColorBtn_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Brown);
         }
 
+        /// <summary>
+        /// Xử lý chọn màu hổng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pinkColorButton_Click(object sender, RoutedEventArgs e)
         {
             _currentColor = new SolidColorBrush(Colors.Pink);
@@ -384,6 +480,12 @@ namespace MyPaint
         float factor = 1;
         float maxZoom = 10f; // Maximum zoom factor
         float minZoom = 1f; // Minimum zoom factor
+
+        /// <summary>
+        /// Vùng vẽ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void drawingArea_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (e.Delta < 0 && factor > minZoom) // Zoom out
